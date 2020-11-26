@@ -1,10 +1,13 @@
 # 更新履歴
 
-## v0.0.1beta
+## v0.0.1beta, beta2
 
 - ATSUYAさん向けに仮配布
-- kuroppoid_001 を新規作成
-- kuroppoid_002 を新規作成
 
-- 利用規約準備中
-- 各種LICENSEファイル準備中
+## v0.0.1
+
+- 2020年11月26日配布
+- モデル配布と同時にレシピ公開
+- 新規モデル
+  - kurobousuku_AI_001
+  - kuroppoid_001

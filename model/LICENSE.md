@@ -1,4 +1,4 @@
 # LICENSE
 
-read LICENSE.md in the directories kuroppoid_*
+Read LICENSE.md in the directories kuroppoid\_\* or kurobousuku\_AI\_\* .
 

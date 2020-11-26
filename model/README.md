@@ -10,7 +10,7 @@
 
 ## 使い方
 
-1. **kuroppoid_000** のようなフォルダ選んでダブルクリックする。
+1. **kurobousuku_AI_000** または **kuroppoid_000** のようなフォルダ選んでダブルクリックする。
 2. musicxml または xml を **00_musicxml** に入れる。
 3. **sing.bat** をダブルクリックする。
 
