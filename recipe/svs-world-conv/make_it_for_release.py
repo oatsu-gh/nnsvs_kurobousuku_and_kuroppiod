@@ -9,14 +9,17 @@ from glob import glob
 from os import makedirs
 from shutil import copy2, copytree
 
+import yaml
 from tqdm import tqdm
 
-SINGER = 'kuroppoid'
+with open('config.yaml', 'r') as f_yaml:
+    config = yaml.load(f_yaml, Loader=yaml.FullLoader)
+SINGER = config['spk']
 CONFIG_DIR = 'conf'
-DICTIONARY_DIR = 'dic'
-RELEASE_DIR = 'release/kuroppoid_---'
-PATH_QUESTION = 'hed/jp_qst_crazy_mono_005_173D.hed'
-NAME_EXPERIMENT = 'jp_qst_crazy_mono_005_173D'
+DICTIONARY_DIR = config['sinsy_dic']
+RELEASE_DIR = f'release/{SINGER}_---'
+PATH_QUESTION = config['question_path']
+NAME_EXPERIMENT = config['tag']
 
 
 def copy_train_config(config_dir, release_dir):
@@ -64,19 +67,27 @@ def copy_model(singer, name_exp, release_dir):
     makedirs(f'{release_dir}/exp/{name_exp}/acoustic', exist_ok=True)
     makedirs(f'{release_dir}/exp/{name_exp}/duration', exist_ok=True)
     makedirs(f'{release_dir}/exp/{name_exp}/timelag', exist_ok=True)
-    list_path_model = glob(f'exp/{name_exp}/*/best_loss.pth')
-    list_path_model += glob(f'exp/{name_exp}/*/latest.pth')
+    list_path_model = glob(f'exp/{name_exp}/*/*.pth')
     list_path_model += glob(f'exp/{name_exp}/*/model.yaml')
 
     print('copying model')
     for path_model in tqdm(list_path_model):
         copy2(path_model, f'{release_dir}/{path_model}')
 
+def copy_general_config(release_dir):
+    """
+    singer: 歌唱者名
+    """
+    print('copying config.yaml')
+    copy2('config.yaml', f'{release_dir}/config.yaml')
+
 
 def main():
     """
     各種ファイルをコピーする
     """
+    makedirs(RELEASE_DIR, exist_ok=True)
+    copy_general_config(RELEASE_DIR)
     copy_train_config(CONFIG_DIR, RELEASE_DIR)
     copy_dictionary(DICTIONARY_DIR, RELEASE_DIR)
     copy_question(PATH_QUESTION, RELEASE_DIR)

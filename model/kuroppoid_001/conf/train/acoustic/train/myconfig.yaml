@@ -2,7 +2,7 @@
 
 out_dir: exp
 nepochs: 100
-checkpoint_epoch_interval: 20
+checkpoint_epoch_interval: 5
 
 stream_wise_loss: false
 use_detect_anomaly: true
